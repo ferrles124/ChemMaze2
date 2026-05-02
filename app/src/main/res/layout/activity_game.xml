@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/bg_card">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:background="@android:color/transparent"
+            android:tint="@color/accent_cyan"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:id="@+id/tvLevelTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bölüm 1"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvFormula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CH₄"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent_green"/>
+
+                <TextView
+                    android:id="@+id/tvMoleculeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Metan"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_dim"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMoves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hamle: 0"
+            android:textSize="12sp"
+            android:textColor="@color/accent_cyan"/>
+    </LinearLayout>
+
+    <!-- Game Canvas -->
+    <com.chemmaze.ui.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- D-Pad + action buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/bg_card">
+
+        <!-- Undo / Reset -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnUndo"
+                android:layout_width="72dp"
+                android:layout_height="40dp"
+                android:text="↩ Geri"
+                android:textSize="11sp"
+                android:backgroundTint="@color/bg_btn"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="72dp"
+                android:layout_height="40dp"
+                android:text="⟳ Sıfır"
+                android:textSize="11sp"
+                android:backgroundTint="@color/bg_btn"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- D-Pad -->
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3">
+
+            <Space android:layout_width="56dp" android:layout_height="56dp"/>
+            <Button
+                android:id="@+id/btnUp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:text="▲"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_btn"/>
+            <Space android:layout_width="56dp" android:layout_height="56dp"/>
+
+            <Button
+                android:id="@+id/btnLeft"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:text="◀"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_btn"/>
+            <Space android:layout_width="56dp" android:layout_height="56dp"/>
+            <Button
+                android:id="@+id/btnRight"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:text="▶"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_btn"/>
+
+            <Space android:layout_width="56dp" android:layout_height="56dp"/>
+            <Button
+                android:id="@+id/btnDown"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:text="▼"
+                android:textSize="18sp"
+                android:backgroundTint="@color/bg_btn"/>
+            <Space android:layout_width="56dp" android:layout_height="56dp"/>
+        </GridLayout>
+
+        <Space android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+    </LinearLayout>
+</LinearLayout>
