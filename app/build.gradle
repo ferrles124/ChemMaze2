@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     namespace 'com.chemmaze'
@@ -15,8 +15,7 @@ android {
 
     sourceSets {
         main {
-            java.srcDirs = ['src/main/java']
-            kotlin.srcDirs = ['src/main/java']
+            java.srcDirs = ['src/main/java', 'src/main/kotlin']
         }
     }
 
