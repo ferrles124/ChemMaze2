@@ -1,0 +1,71 @@
+name: Build ChemMaze APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Generate launcher icons
+        run: |
+          sudo apt-get install -y imagemagick
+
+          declare -A SIZES=(
+            [mipmap-mdpi]=48
+            [mipmap-hdpi]=72
+            [mipmap-xhdpi]=96
+            [mipmap-xxhdpi]=144
+            [mipmap-xxxhdpi]=192
+          )
+
+          for DIR in "${!SIZES[@]}"; do
+            SIZE=${SIZES[$DIR]}
+            mkdir -p app/src/main/res/$DIR
+            convert -size ${SIZE}x${SIZE} xc:"#0A0E1A" \
+              -fill "#00E5FF" \
+              -draw "circle $((SIZE/2)),$((SIZE/2)) $((SIZE/2)),$((SIZE/8))" \
+              -fill "#0A0E1A" \
+              -pointsize $((SIZE/3)) \
+              -gravity Center \
+              -annotate 0 "CM" \
+              app/src/main/res/$DIR/ic_launcher.png
+            cp app/src/main/res/$DIR/ic_launcher.png \
+               app/src/main/res/$DIR/ic_launcher_round.png
+          done
+
+          rm -f app/src/main/res/mipmap-hdpi/ic_launcher.xml
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Download Gradle wrapper jar
+        run: |
+          mkdir -p gradle/wrapper
+          curl -L -o gradle/wrapper/gradle-wrapper.jar \
+            https://github.com/gradle/gradle/raw/v8.4.0/gradle/wrapper/gradle-wrapper.jar
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChemMaze-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
