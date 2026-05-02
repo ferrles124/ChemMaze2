@@ -1,0 +1,29 @@
+{
+  "id": 1,
+  "title": "Bölüm 1",
+  "formula": "CH₄",
+  "moleculeName": "Metan",
+  "rows": 7,
+  "cols": 7,
+  "walls": [
+    [0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],
+    [1,0],[1,6],[2,0],[2,6],[3,0],[3,6],
+    [4,0],[4,6],[5,0],[5,6],
+    [6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[6,6],
+    [2,2],[2,4],[4,2],[4,4]
+  ],
+  "atoms": [
+    {"id":0,"symbol":"C","h":0,"row":1,"col":3},
+    {"id":1,"symbol":"C","h":1,"row":1,"col":1},
+    {"id":2,"symbol":"C","h":1,"row":5,"col":5},
+    {"id":3,"symbol":"C","h":1,"row":5,"col":1},
+    {"id":4,"symbol":"C","h":1,"row":1,"col":5}
+  ],
+  "bonds": [
+    {"from":0,"to":1,"fromSide":"left", "toSide":"right"},
+    {"from":0,"to":4,"fromSide":"right","toSide":"left"},
+    {"from":0,"to":3,"fromSide":"down", "toSide":"up"},
+    {"from":0,"to":2,"fromSide":"down", "toSide":"up"}
+  ],
+  "reactive": []
+}
